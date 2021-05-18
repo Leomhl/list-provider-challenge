@@ -22,10 +22,14 @@ class DestinationsListPage extends StatelessWidget {
       body: Consumer<Destinations>(
         builder: (context, information, child) {
           return ListView.builder(
-              itemCount: information.destinations.length,
-              itemBuilder: (context, int index) {
+            itemCount: information.destinations.length,
+            itemBuilder: (context, int index) {
+
+              if(information.destinations[index].category == category)
                 return DestinyListItem(information.destinations[index]);
-              });
+
+              return Container();
+            });
         },
       ),
     );
