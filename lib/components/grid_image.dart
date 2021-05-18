@@ -1,6 +1,7 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
+import 'package:list_provider_challenge/models/destination_category_model.dart';
 
 class GridImage extends StatelessWidget {
   String image;

@@ -1,7 +1,9 @@
+import 'destinations_list_page.dart';
 import 'package:flutter/material.dart';
 import 'package:list_provider_challenge/components/grid_image.dart';
 import 'package:list_provider_challenge/core/app_colors.dart';
 import 'package:list_provider_challenge/core/app_images.dart';
+import 'package:list_provider_challenge/models/destination_category_model.dart';
 import 'package:list_provider_challenge/pages/destination_form_page.dart';
 
 class DestinationsPage extends StatelessWidget {
@@ -23,30 +25,35 @@ class DestinationsPage extends StatelessWidget {
           crossAxisSpacing: 10,
           mainAxisSpacing: 10,
           children: [
-            // TODO: implementar o esquema de gesture detector aqui para navegar para a tela com a lista de destinos cadastrados
-            GridImage(
+            _generateGridWidget(
               image: AppImages.beach,
-              description: "Praias",
+              category: DestinationCategory.beaches,
+              context: context
             ),
-            GridImage(
-              image: AppImages.cow,
-              description: "Campos",
+            _generateGridWidget(
+                image: AppImages.cow,
+                category: DestinationCategory.countrysides,
+                context: context
             ),
-            GridImage(
-              image: AppImages.egypt,
-              description: "Históricos",
+            _generateGridWidget(
+                image: AppImages.egypt,
+                category: DestinationCategory.historicals,
+                context: context
             ),
-            GridImage(
-              image: AppImages.mountain,
-              description: "Montanhas",
+            _generateGridWidget(
+                image: AppImages.mountain,
+                category: DestinationCategory.mountains,
+                context: context
             ),
-            GridImage(
-              image: AppImages.orient,
-              description: "Orientais",
+            _generateGridWidget(
+                image: AppImages.orient,
+                category: DestinationCategory.orientals,
+                context: context
             ),
-            GridImage(
-              image: AppImages.usa,
-              description: "Ocidentais",
+            _generateGridWidget(
+                image: AppImages.usa,
+                category: DestinationCategory.occidentals,
+                context: context
             ),
           ],
         ),
@@ -60,6 +67,25 @@ class DestinationsPage extends StatelessWidget {
         },
         backgroundColor: AppColors.principal,
         child: Icon(Icons.add),
+      ),
+    );
+  }
+
+  GestureDetector _generateGridWidget({
+    String image,
+    DestinationCategory category,
+    BuildContext context}) {
+
+    return GestureDetector(
+      onTap: () {
+        Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => DestinationsListPage(category: category))
+        );
+      },
+      child: GridImage(
+        image: image,
+        description: category.name,
       ),
     );
   }
