@@ -5,14 +5,7 @@ import 'package:list_provider_challenge/models/destination_model.dart';
 import 'package:list_provider_challenge/models/destinations_model.dart';
 import 'package:provider/provider.dart';
 
-class DestinationFormPage extends StatefulWidget {
-  DestinationFormPage({Key key}) : super(key: key);
-
-  @override
-  _DestinationFormPageState createState() => _DestinationFormPageState();
-}
-
-class _DestinationFormPageState extends State<DestinationFormPage> {
+class DestinationFormPage extends StatelessWidget {
 
   final _formKey = GlobalKey<FormState>();
 
