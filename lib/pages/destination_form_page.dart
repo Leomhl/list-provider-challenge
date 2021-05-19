@@ -118,7 +118,7 @@ class DestinationFormPage extends StatelessWidget {
                       },
                       child: Text("Salvar destino")
                   ),
-                )
+                ),
               ],
             ),
           ),

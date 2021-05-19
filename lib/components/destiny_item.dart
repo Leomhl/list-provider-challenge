@@ -8,10 +8,13 @@ class DestinyListItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Card(child: ListTile(
-      leading: Text(this._destiny.name),
-      title: Text(this._destiny.country),
-      subtitle: Text(this._destiny.city),
-    ));
+    return Card(
+        elevation: 5,
+        child: ListTile(
+          leading: Icon(Icons.airplanemode_active),
+          title: Text(this._destiny.name),
+          subtitle: Text(this._destiny.city),
+          trailing: Text(this._destiny.state),
+        ));
   }
 }
