@@ -18,7 +18,7 @@ class MarketPage extends StatelessWidget {
             .height,
         decoration: BoxDecoration(
           image: DecorationImage(
-            image: AssetImage(AppImages.market_bg),
+            image: AssetImage(AppImages.marketBg),
             fit: BoxFit.cover,
           ),
         ),
