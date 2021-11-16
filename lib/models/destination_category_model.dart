@@ -7,7 +7,7 @@ enum DestinationCategory {
   occidentals
 }
 
-extension DestinationCategoryExtension on DestinationCategory {
+extension DestinationCategoryExtension on DestinationCategory? {
 
   String get name {
     switch (this) {
@@ -24,7 +24,7 @@ extension DestinationCategoryExtension on DestinationCategory {
       case DestinationCategory.occidentals:
         return "Ocidentais";
       default:
-        return null;
+        return '';
     }
   }
 }

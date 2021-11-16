@@ -5,18 +5,23 @@ import 'package:list_provider_challenge/models/destination_model.dart';
 import 'package:list_provider_challenge/models/destinations_model.dart';
 import 'package:provider/provider.dart';
 
-class DestinationFormPage extends StatelessWidget {
+class DestinationFormPage extends StatefulWidget {
+  final TextEditingController _controllerName = TextEditingController();
+  final TextEditingController _controllerCountry = TextEditingController();
+  final TextEditingController _controllerState = TextEditingController();
+  final TextEditingController _controllerCity = TextEditingController();
 
+  DestinationCategory? _category;
+
+  @override
+  State<DestinationFormPage> createState() => _DestinationFormPageState();
+}
+
+class _DestinationFormPageState extends State<DestinationFormPage> {
   final _formKey = GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context) {
-
-    final TextEditingController _controllerName = TextEditingController();
-    final TextEditingController _controllerCountry = TextEditingController();
-    final TextEditingController _controllerState = TextEditingController();
-    final TextEditingController _controllerCity = TextEditingController();
-    DestinationCategory _category = null;
 
     return Scaffold(
       appBar: AppBar(
@@ -33,30 +38,30 @@ class DestinationFormPage extends StatelessWidget {
               children: [
                 _generateTextFormField(
                     label: "Nome do destino",
-                    controller: _controllerName,
+                    controller: widget._controllerName,
                     errorMessage: "Nome inválido!"
                 ),
                 SizedBox(height: 15),
                 _generateTextFormField(
                     label: "País",
-                    controller: _controllerCountry,
+                    controller: widget._controllerCountry,
                     errorMessage: "País inválido!"
                 ),
                 SizedBox(height: 15),
                 _generateTextFormField(
                     label: "Estado",
-                    controller: _controllerState,
+                    controller: widget._controllerState,
                     errorMessage: "Estado inválido!"
                 ),
                 SizedBox(height: 15),
                 _generateTextFormField(
                     label: "Cidade",
-                    controller: _controllerCity,
+                    controller: widget._controllerCity,
                     errorMessage: "Cidade inválido!"
                 ),
                 SizedBox(height: 15),
                 DropdownButtonFormField(
-                    value: _category,
+                    value: widget._category,
                     style: TextStyle(
                       color: AppColors.principal,
                     ),
@@ -77,10 +82,10 @@ class DestinationFormPage extends StatelessWidget {
                           DestinationCategory.historicals,
                         ]
                     ),
-                    onChanged: (newCategorySelected) {
-                      _category = newCategorySelected;
+                    onChanged: (dynamic newCategorySelected) {
+                      widget._category = newCategorySelected;
                     },
-                    validator: (value) => value == null ? "Selecione uma categoria!": null
+                    validator: (dynamic value) => value == null ? "Selecione uma categoria!": null
                 ),
                 SizedBox(height: 30),
                 SizedBox(
@@ -90,25 +95,25 @@ class DestinationFormPage extends StatelessWidget {
                         primary: AppColors.principal,
                       ),
                       onPressed: (){
-                        if(_formKey.currentState.validate()) {
+                        if(_formKey.currentState!.validate()) {
                           Provider.of<Destinations>(context, listen: false).add(
                               Destination(
-                                name: _controllerName.text,
-                                category: _category,
-                                country: _controllerCountry.text,
-                                state: _controllerState.text,
-                                city: _controllerCity.text,
+                                name: widget._controllerName.text,
+                                category: widget._category!,
+                                country: widget._controllerCountry.text,
+                                state: widget._controllerState.text,
+                                city: widget._controllerCity.text,
                               )
                           );
 
                           final snackBar = SnackBar(content: Text("Destino salvo com sucesso!"));
                           ScaffoldMessenger.of(context).showSnackBar(snackBar);
 
-                          _controllerName.clear();
-                          _controllerCity.clear();
-                          _controllerState.clear();
-                          _controllerCountry.clear();
-                          _category = null;
+                          widget._controllerName.clear();
+                          widget._controllerCity.clear();
+                          widget._controllerState.clear();
+                          widget._controllerCountry.clear();
+                          widget._category = null;
 
                           Future.delayed(
                               Duration(seconds: 2),
@@ -127,7 +132,7 @@ class DestinationFormPage extends StatelessWidget {
     );
   }
 
-  TextFormField _generateTextFormField({String label, TextEditingController controller, String errorMessage}) {
+  TextFormField _generateTextFormField({String? label, TextEditingController? controller, String? errorMessage}) {
 
     return TextFormField(
       keyboardType: TextInputType.text,
@@ -138,11 +143,11 @@ class DestinationFormPage extends StatelessWidget {
         ),
       ),
       controller: controller,
-      validator: (value) => value.length == 0 ? errorMessage: null,
+      validator: (value) => value!.length == 0 ? errorMessage: null,
     );
   }
 
-  List<DropdownMenuItem> _generateDropDownMenuItems({List<DestinationCategory> categories}) {
+  List<DropdownMenuItem> _generateDropDownMenuItems({required List<DestinationCategory> categories}) {
     List<DropdownMenuItem> menuItems = [];
     categories.forEach((DestinationCategory element) {
       menuItems.add(DropdownMenuItem(

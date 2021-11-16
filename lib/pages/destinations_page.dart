@@ -7,8 +7,6 @@ import 'package:list_provider_challenge/models/destination_category_model.dart';
 import 'package:list_provider_challenge/pages/destination_form_page.dart';
 
 class DestinationsPage extends StatelessWidget {
-  const DestinationsPage({Key key}) : super(key: key);
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -72,9 +70,9 @@ class DestinationsPage extends StatelessWidget {
   }
 
   GestureDetector _generateGridWidget({
-    String image,
-    DestinationCategory category,
-    BuildContext context}) {
+    required String image,
+    required DestinationCategory category,
+    required BuildContext context}) {
 
     return GestureDetector(
       onTap: () {

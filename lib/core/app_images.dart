@@ -1,5 +1,5 @@
 class AppImages {
-  static String get market_bg => "assets/images/market_bg.jpg";
+  static String get marketBg => "assets/images/market_bg.jpg";
 
   static String get beach => "assets/images/beach.jpg";
   static String get cow => "assets/images/cow.jpg";

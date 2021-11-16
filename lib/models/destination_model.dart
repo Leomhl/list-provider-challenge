@@ -1,4 +1,3 @@
-import 'package:flutter/material.dart';
 import 'package:list_provider_challenge/models/destination_category_model.dart';
 
 class Destination {
@@ -9,10 +8,10 @@ class Destination {
   String city;
 
   Destination({
-    @required this.name,
-    @required this.category,
-    @required this.country,
-    @required this.state,
-    @required this.city
+    required this.name,
+    required this.category,
+    required this.country,
+    required this.state,
+    required this.city
   });
 }

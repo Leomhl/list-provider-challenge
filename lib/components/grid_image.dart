@@ -1,13 +1,12 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
-import 'package:list_provider_challenge/models/destination_category_model.dart';
 
 class GridImage extends StatelessWidget {
   String image;
   String description;
 
-  GridImage({@required this.image, @required this.description});
+  GridImage({required this.image, required this.description});
 
   @override
   Widget build(BuildContext context) {

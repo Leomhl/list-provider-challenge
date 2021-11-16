@@ -10,11 +10,10 @@ import 'destination_form_page.dart';
 class DestinationsListPage extends StatelessWidget {
   DestinationCategory category;
 
-  DestinationsListPage({@required this.category});
+  DestinationsListPage({required this.category});
 
   @override
   Widget build(BuildContext context) {
-    bool test = false;
     return Scaffold(
       appBar: AppBar(
         title: Text(category.name),
